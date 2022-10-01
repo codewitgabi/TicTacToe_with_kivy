@@ -1,0 +1,110 @@
+
+<PlayerButton@Button>:
+	text: ""
+	font_size: dp(45)
+	background_normal: ""
+	background_color: (1,1,1,1)
+
+
+<TicTacToeGame>:
+	BoxLayout:
+		size: root.size
+		pos: root.pos
+		padding: (self.width/8, self.height/9, self.width/8, self.height/6.2)
+		orientation: "vertical"
+		spacing: dp(5)
+		# c1r1 => Column 1 Row 1
+		
+		Label:
+			text: "TICTACTOE"
+			size_hint: 1, .05
+			text_size: self.size
+			halign: "left"
+			valign: "center"
+			font_size: dp(30)
+			
+		GridLayout:
+			cols: 2
+			rows: 1
+			size_hint: 1, .05
+			
+			Label:
+				text: "O  :  " + str(root.player1_score)
+				text_size: self.size
+				halign: "left"
+				font_size: dp(26)
+			Label:
+				text: "X  :  " + str(root.player2_score)
+				text_size: self.size
+				halign: "right"
+				font_size: dp(26)
+			
+		Label:
+			id: winner_label
+			text: ""
+			size_hint: 1, .05
+			text_size: self.size
+			halign: "center"
+			valign: "center"
+			font_size: dp(20)
+		
+		GridLayout:
+			cols: 3
+			rows: 3
+			size_hint: 1, .4
+			spacing: dp(5)
+			padding: (0, 0, 0, dp(5))
+			
+			PlayerButton:
+				id: c1r1
+				disabled: root.finished
+				on_release: root.flip(self, "00")
+			PlayerButton:
+				id: c2r1
+				disabled: root.finished
+				on_release: root.flip(self, "01")
+			PlayerButton:
+				id: c3r1
+				disabled: root.finished
+				on_release: root.flip(self, "02")
+			PlayerButton:
+				id: c1r2
+				disabled: root.finished
+				on_release: root.flip(self, "10")
+			PlayerButton:
+				id: c2r2
+				disabled: root.finished
+				on_release: root.flip(self, "11")
+			PlayerButton:
+				id: c3r2
+				disabled: root.finished
+				on_release: root.flip(self, "12")
+			PlayerButton:
+				id: c1r3
+				disabled: root.finished
+				on_release: root.flip(self, "20")
+			PlayerButton:
+				id: c2r3
+				disabled: root.finished
+				on_release: root.flip(self, "21")
+			PlayerButton:
+				id: c3r3
+				disabled: root.finished
+				on_release: root.flip(self, "22")
+				
+		BoxLayout:
+			size_hint: 1, .07
+			spacing: dp(5)
+			
+			Button:
+				id: quit
+				text: "Quit Game"
+				font_size: dp(20)
+				on_release:root.quit_game()
+				
+			Button:
+				id: restart
+				text: "Play Again"
+				font_size: dp(20)
+				disabled: not root.finished
+				on_release:root.restart_game()
